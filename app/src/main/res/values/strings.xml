@@ -6,4 +6,6 @@
     <string name="downloads_button_text">Downloads</string>
     <string name="my_podcasts_button_text">My Podcasts</string>
     <string name="settings_button_text">Settings</string>
+    <string name="search_bar_hint_text">Search</string>
+    <string name="podcast_art_image_content_description">Podcast art</string>
 </resources>
