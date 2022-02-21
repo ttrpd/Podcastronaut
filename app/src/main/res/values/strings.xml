@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Podtastronaut</string>
+    <string name="menu_button_description">Main Menu</string>
+    <string name="now_playing_button_description">Now playing</string>
+    <string name="search_button_text">Search</string>
+    <string name="downloads_button_text">Downloads</string>
+    <string name="my_podcasts_button_text">My Podcasts</string>
+    <string name="settings_button_text">Settings</string>
+</resources>
