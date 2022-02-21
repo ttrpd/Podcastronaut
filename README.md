@@ -1,5 +1,5 @@
 # Podcastronaut
-This is a simple podcast player that was based on a UI proof of concept built with Dart & Flutter called ![Restless](https://github.com/ttrpd/Podtastic).
+This is a simple podcast player that was based on a UI proof of concept built with Dart & Flutter called ![Podtastic](https://github.com/ttrpd/Podtastic).
 
 Initially, it will provide common features included in most podcast apps, including playback, navigation of the audio stream (scrubbing, play/pause, etc.),
 querying podcast APIs (beginning with the ![iTunesSearchAPI](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html))), and storing favorites.
