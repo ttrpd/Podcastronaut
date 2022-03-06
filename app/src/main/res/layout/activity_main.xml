@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -69,7 +70,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="onSearchViewButtonClicked"/>
 
             <Button
                 android:id="@+id/downloadsViewButton"
@@ -80,7 +82,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchViewButton" />
+                app:layout_constraintTop_toBottomOf="@+id/searchViewButton"
+                android:onClick="onDownloadsViewButtonClicked"/>
 
             <Button
                 android:id="@+id/myPodcastsViewButton"
@@ -91,7 +94,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/downloadsViewButton" />
+                app:layout_constraintTop_toBottomOf="@+id/downloadsViewButton"
+                android:onClick="onMyPodcastsViewButtonClicked"/>
 
             <Button
                 android:id="@+id/settingsViewButton"
@@ -102,7 +106,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/myPodcastsViewButton" />
+                app:layout_constraintTop_toBottomOf="@+id/myPodcastsViewButton"
+                android:onClick="onSettingsViewButtonClicked"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
