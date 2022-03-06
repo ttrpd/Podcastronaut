@@ -6,28 +6,48 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 public class MainActivity extends AppCompatActivity {
 
-    ConstraintLayout overlay;
+    private ConstraintLayout overlay;
+    private ConstraintLayout menuView;
     boolean overlayHidden = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        View mainView = findViewById(R.id.mainFrame);
+
         overlay = findViewById(R.id.overlay);
-        ConstraintLayout menuView = findViewById(R.id.menuView);
+        menuView = findViewById(R.id.menuView);
+
+        setOverlayView(R.layout.search);
+
+        View mainView = findViewById(R.id.mainFrame);
         mainView.getViewTreeObserver().addOnGlobalLayoutListener(
             new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
                     mainView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    overlay.setMaxHeight(menuView.getHeight());
+                    resizeOverlay();
                 }
             }
         );
+    }
+
+    private void resizeOverlay() {
+        overlay.setMaxHeight(menuView.getHeight());
+    }
+
+    private void setOverlayView(int viewXMLID) {
+        ViewGroup parent = (ViewGroup) overlay.getParent();
+        int index = parent.indexOfChild(overlay);
+        parent.removeView(overlay);
+        getLayoutInflater().inflate(viewXMLID, parent);
+        overlay = (ConstraintLayout) parent.getChildAt(index);
+        resizeOverlay();
+        moveOverlay();
     }
 
     public void moveOverlay() {
@@ -46,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMenuButtonClicked(View view) {
+        moveOverlay();
+    }
+
+    public void onSearchViewButtonClicked(View view) {setOverlayView(R.layout.search);}
+    public void onDownloadsViewButtonClicked(View view) {setOverlayView(R.layout.downloads);}
+    public void onMyPodcastsViewButtonClicked(View view) {setOverlayView(R.layout.my_podcasts);}
+    public void onSettingsViewButtonClicked(View view) {setOverlayView(R.layout.settings);}
+
+    @Override
+    public void onBackPressed() {
         moveOverlay();
     }
 }
