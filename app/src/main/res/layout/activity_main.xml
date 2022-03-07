@@ -5,6 +5,7 @@
     android:id="@+id/mainFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pink"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -23,18 +24,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                style="@style/MenuFloatingActionButton"
                 android:id="@+id/menuButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:src="@drawable/ic_menu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/now_playing_button_description"
+                android:contentDescription="@string/menu_button_description"
                 android:onClick="onMenuButtonClicked"/>
 
             <TextView
+                style="@style/TitleText"
                 android:id="@+id/viewNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,15 +45,14 @@
                 app:layout_constraintStart_toEndOf="@+id/menuButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                style="@style/MenuFloatingActionButton"
                 android:id="@+id/nowPlayingButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:src="@drawable/ic_bt_headphones"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/menu_button_description" />
+                android:contentDescription="@string/now_playing_button_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,9 +62,8 @@
             android:layout_height="match_parent">
 
             <Button
+                style="@style/MenuButton"
                 android:id="@+id/searchViewButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/search_button_text"
                 app:layout_constraintBottom_toTopOf="@+id/downloadsViewButton"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -74,9 +73,8 @@
                 android:onClick="onSearchViewButtonClicked"/>
 
             <Button
+                style="@style/MenuButton"
                 android:id="@+id/downloadsViewButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/downloads_button_text"
                 app:layout_constraintBottom_toTopOf="@+id/myPodcastsViewButton"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,9 +84,8 @@
                 android:onClick="onDownloadsViewButtonClicked"/>
 
             <Button
+                style="@style/MenuButton"
                 android:id="@+id/myPodcastsViewButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/my_podcasts_button_text"
                 app:layout_constraintBottom_toTopOf="@+id/settingsViewButton"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,9 +95,8 @@
                 android:onClick="onMyPodcastsViewButtonClicked"/>
 
             <Button
+                style="@style/MenuButton"
                 android:id="@+id/settingsViewButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/settings_button_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,11 +110,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:layout_gravity="bottom">
-
+        style="@style/OverlayView">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
