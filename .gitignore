@@ -36,3 +36,26 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+##############################################
+# Latex:
+docs/*.aux
+docs/*.bit
+docs/*.blg
+docs/*.bbl
+docs/*.lof
+docs/*.log
+docs/*.lot
+docs/*.glo
+docs/*.glx
+docs/*.gxg
+docs/*.gxs
+docs/*.idx
+docs/*.ilg
+docs/*.ind
+docs/*.out
+docs/*.url
+docs/*.svn
+docs/*.toc
+docs/*.synctex.gz
+

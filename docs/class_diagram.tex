@@ -1,0 +1,40 @@
+\documentclass{standalone}
+\usepackage{pgf-umlcd}
+\begin{document}
+    \begin{tikzpicture}[node distance=5cm]
+      % PodcastSearchResult class
+      \begin{class}[text width=5cm]{PodcastSearchResult}{-10, 5}
+        \attribute{thumbnailLink : String}
+        \attribute{title : String}
+        \attribute{description : String}
+        \operation { openPodcastView(): void }
+      \end{class}
+      % Podcast class
+      \begin{class}[text width=5cm]{Podcast}{-10, -1}
+        \attribute{title : String}
+        \attribute{artLink : String}
+        \attribute{thumbnailLink : String}
+        \attribute{feedLink : String}
+        \attribute{artistName : String}
+        \attribute{description : String}
+      \end{class}
+      % Episode class
+      \begin{class}[text width=5cm, right of=Podcast]{Episode}{0, -1}
+        \attribute{link : String}
+        \attribute{name : String}
+        \attribute{description : String}
+        \attribute{subtitle : String}
+        \attribute{number : Integer}
+        \attribute{played : bool}
+        \attribute{duration : Time}
+        \attribute{released : DateTime}
+      \end{class}
+      \association {Podcast}{1}{}{Episode}{0..*}{}
+      \association {PodcastSearchResult}{}{}{Podcast}{1}{}
+    \end{tikzpicture}
+\end{document}
+
+
+
+
+
