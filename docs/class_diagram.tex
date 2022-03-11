@@ -2,14 +2,33 @@
 \usepackage{pgf-umlcd}
 \begin{document}
     \begin{tikzpicture}[node distance=5cm]
-      % PodcastSearchResult class
+      % AudioPlayer:
+      %   A singleton which controls the playing of podcast audio
+      % NowPlayingView:
+      %   Contains the Upper and Lower shelf views
+      % PlayingUpperShelfView:
+      %   Shows the currently playing podcast's title, description
+      %   art, and the SeekBar
+      % SeekBar:
+      %   Shows the AudioPlayer's progress through the current file
+      %   and allows the user to scrub through the file
+      % PlayingLowerShelfView:
+      %   Contains the player controls, meta operations buttons (fav,
+      %   share, show chapters), and ChaptersView
+      % ChaptersView:
+      %   Displays all of the chapter related tag/metadata information
+      %   on the currently playing audio file
+      % PodcastSearchResult:
+      %   Represents one result in the list of results displayed when
+      %   when searching for a podcast
       \begin{class}[text width=5cm]{PodcastSearchResult}{-10, 5}
         \attribute{thumbnailLink : String}
         \attribute{title : String}
         \attribute{description : String}
         \operation { openPodcastView(): void }
       \end{class}
-      % Podcast class
+      % Podcast:
+      %   describes a whole podcast
       \begin{class}[text width=5cm]{Podcast}{-10, -1}
         \attribute{title : String}
         \attribute{artLink : String}
@@ -18,7 +37,8 @@
         \attribute{artistName : String}
         \attribute{description : String}
       \end{class}
-      % Episode class
+      % Episode:
+      %   describes a podcast episode
       \begin{class}[text width=5cm, right of=Podcast]{Episode}{0, -1}
         \attribute{link : String}
         \attribute{name : String}
