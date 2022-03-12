@@ -19,11 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // the sliding overlay that covers the main menu
         overlay = findViewById(R.id.overlay);
+        // the main menu
         menuView = findViewById(R.id.menuView);
-
+        // initializes the view shown on the overlay to be the search view
         setOverlayView(R.layout.search);
 
+        // adds a listener to the view tree which resizes the overlay, once built
         View mainView = findViewById(R.id.mainFrame);
         mainView.getViewTreeObserver().addOnGlobalLayoutListener(
             new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    /**
+     * Adjusts the Overlay's size to make the menu button, nowplaying button, and title bar visible
+     */
     private void resizeOverlay() {
         overlay.setMaxHeight(menuView.getHeight());
     }
@@ -50,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         moveOverlay();
     }
 
+    /**
+     * Moves the overlay to reveal or hide the main menu
+     */
     public void moveOverlay() {
         float translationVal = overlay.getHeight();
         if (overlayHidden) {
