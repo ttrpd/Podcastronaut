@@ -2,19 +2,45 @@
 \usepackage{pgf-umlcd}
 \begin{document}
     \begin{tikzpicture}[node distance=5cm]
-      % AudioPlayer:
+      % AudioManager:
       %   A singleton which controls the playing of podcast audio
+      \begin{class}{AudioManager}{-20, 0}
+        \attribute{mediaPlayer: MediaPlayer}
+        \attribute{currentEpisode: Episode}
+        % further methods TBD
+      \end{class}
       % NowPlayingView:
       %   Contains the Upper and Lower shelf views
+      \begin{class}{NowPlayingView}{-25, -7}
+        \attribute{upperShelf: View}
+        \attribute{lowerShelf: View}
+        \operation{shiftUpperShelf(): void}
+        % further methods TBD
+      \end{class}
       % PlayingUpperShelfView:
       %   Shows the currently playing podcast's title, description
       %   art, and the SeekBar
-      % SeekBar:
+      \begin{class}{PlayingUpperShelfView}{-22, -12}
+        \attribute{seekBar: SeekBarView}
+      \end{class}
+      % SeekBarView:
       %   Shows the AudioPlayer's progress through the current file
       %   and allows the user to scrub through the file
+      \begin{class}{SeekBarView}{-22, -15}
+        \attribute{trackProgressPercent: double}
+        \attribute{barWidth: double}
+        \attribute{thumbWidth: double}
+        \attribute{thumbHeight: double}
+        \attribute{seekProgressPercent: double}
+        \attribute{seeking: bool}
+        \operation{onSeekRequested(double percent): MediaTimeStamp}
+
+      \end{class}
       % PlayingLowerShelfView:
       %   Contains the player controls, meta operations buttons (fav,
       %   share, show chapters), and ChaptersView
+      \begin{class}{PlayingLowerShelfView}{-28, -12}
+      \end{class}
       % ChaptersView:
       %   Displays all of the chapter related tag/metadata information
       %   on the currently playing audio file
@@ -25,8 +51,9 @@
         \attribute{thumbnailLink : String}
         \attribute{title : String}
         \attribute{description : String}
-        \operation { openPodcastView(): void }
+        \operation{openPodcastView(): void}
       \end{class}
+      
       % Podcast:
       %   describes a whole podcast
       \begin{class}[text width=5cm]{Podcast}{-10, -1}
@@ -39,14 +66,14 @@
       \end{class}
       % Episode:
       %   describes a podcast episode
-      \begin{class}[text width=5cm, right of=Podcast]{Episode}{0, -1}
+      \begin{class}[text width=5cm, below of=Podcast]{Episode}{-10, -5}
         \attribute{link : String}
         \attribute{name : String}
         \attribute{description : String}
         \attribute{subtitle : String}
         \attribute{number : Integer}
         \attribute{played : bool}
-        \attribute{duration : Time}
+        \attribute{duration : Integer}
         \attribute{released : DateTime}
       \end{class}
       \association {Podcast}{1}{}{Episode}{0..*}{}

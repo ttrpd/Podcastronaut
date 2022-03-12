@@ -43,6 +43,8 @@ docs/*.aux
 docs/*.bit
 docs/*.blg
 docs/*.bbl
+docs/*.fdb*
+docs/*.fls
 docs/*.lof
 docs/*.log
 docs/*.lot
