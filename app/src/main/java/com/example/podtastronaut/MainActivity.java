@@ -2,8 +2,6 @@ package com.example.podtastronaut;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -11,15 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout overlay;
     private ConstraintLayout menuView;
     boolean overlayHidden = false;
-
-    private final ArrayList<Podcast> podcasts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         );
-
-
-        for (int i = 0; i < 20; i++) {
-            podcasts.add(new Podcast("podcast number "+i, "", "", "", "", ""));
-        }
-
-        // set up the RecyclerView
-        RecyclerView searchResults = findViewById(R.id.searchResults);
-        searchResults.setLayoutManager(new LinearLayoutManager(this));
-        PodcastSearchAdapter adapter = new PodcastSearchAdapter(podcasts);
-        searchResults.setAdapter(adapter);
     }
 
     /**

@@ -47,9 +47,7 @@ public class PodcastSearchAdapter extends RecyclerView.Adapter<PodcastSearchAdap
         private TextView podcastTitleTextView;
 
         @Override
-        public void onClick(View view) {
-            Log.d("RecyclerViewTest", "podcast number "+getAdapterPosition()+" was clicked");
-        }
+        public void onClick(View view) { }
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
