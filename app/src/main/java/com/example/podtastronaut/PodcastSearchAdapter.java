@@ -1,5 +1,6 @@
 package com.example.podtastronaut;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PodcastSearchAdapter extends RecyclerView.Adapter<PodcastSearchAdapter.ViewHolder> {
+import java.util.ArrayList;
 
-    private Podcast[] podcasts;
+public class PodcastSearchAdapter extends RecyclerView.Adapter<PodcastSearchAdapter.ViewHolder>{
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    private ArrayList<Podcast> podcasts;
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
         public Podcast getPodcast() {
             return podcast;
         }
@@ -42,15 +46,21 @@ public class PodcastSearchAdapter extends RecyclerView.Adapter<PodcastSearchAdap
         private ImageView podcastArtImageView;
         private TextView podcastTitleTextView;
 
+        @Override
+        public void onClick(View view) {
+            Log.d("RecyclerViewTest", "podcast number "+getAdapterPosition()+" was clicked");
+        }
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //TODO: implement click listener
             podcastArtImageView = itemView.findViewById(R.id.podcastSearchArtImageView);
             podcastTitleTextView = itemView.findViewById(R.id.podcastSearchTitleTextView);
+            itemView.setOnClickListener(this);
         }
+
     }
 
-    public PodcastSearchAdapter(Podcast[] pods) {
+    public PodcastSearchAdapter(ArrayList<Podcast> pods) {
         this.podcasts = pods;
     }
 
@@ -65,13 +75,12 @@ public class PodcastSearchAdapter extends RecyclerView.Adapter<PodcastSearchAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.podcastTitleTextView.setText(podcasts[position].getTitle());
+        holder.podcastTitleTextView.setText(podcasts.get(position).getTitle());
         //TODO: set ImageView image from podcast art link
     }
 
     @Override
     public int getItemCount() {
-        return podcasts.length;
+        return podcasts.size();
     }
-
 }

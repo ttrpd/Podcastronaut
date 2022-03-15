@@ -8,8 +8,19 @@ public class Episode {
     private String name;
     private String description;
     private String subtitle;
-    private String number;
-    private String played;
+    private int number;
+    private boolean played;
+
+    public Episode(String link, String name, String description, String subtitle, int number, boolean played, Integer duration) {
+        this.link = link;
+        this.name = name;
+        this.description = description;
+        this.subtitle = subtitle;
+        this.number = number;
+        this.played = played;
+        this.duration = duration;
+    }
+
     private Integer duration;
     private Date released;
 
@@ -45,19 +56,19 @@ public class Episode {
         this.subtitle = subtitle;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
-    public String getPlayed() {
+    public boolean getPlayed() {
         return played;
     }
 
-    public void setPlayed(String played) {
+    public void setPlayed(boolean played) {
         this.played = played;
     }
 
