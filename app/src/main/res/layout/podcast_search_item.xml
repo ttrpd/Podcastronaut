@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/list_item_height"
     android:padding="20dp">
 
     <ImageView
-        android:id="@+id/podcastArtImageView"
+        android:id="@+id/podcastSearchArtImageView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -14,8 +14,8 @@
         android:contentDescription="@string/podcast_art_image_content_description"/>
 
     <TextView
-        android:id="@+id/podcastNameTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/podcastSearchTitleTextView"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"
         android:duplicateParentState="false"
