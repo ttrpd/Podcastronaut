@@ -1,10 +1,19 @@
 package com.example.podtastronaut;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.chromium.net.CronetEngine;
 import org.chromium.net.UrlRequest;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -46,16 +55,8 @@ public class APISearchManager {
     Executor executor = Executors.newSingleThreadExecutor();
 
     public List<Podcast> search(String searchTerm) {
-        CronetEngine.Builder builder = new CronetEngine.Builder(this.context);
-        CronetEngine cronetEngine = builder.build();
-
-        UrlRequest.Builder requestBuilder = cronetEngine.newUrlRequestBuilder(
-                ITUNES_API_URL+searchTerm,
-                new APIRequestCallback(),
-                executor
-        );
-        UrlRequest request = requestBuilder.build();
-        request.start();
+        APIRequest request = (APIRequest) new APIRequest().execute(searchTerm);
+        Log.d("APISearchRequest", "Request process began");
         return results;
     }
 }

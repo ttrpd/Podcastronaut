@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 
 public class Search extends Fragment {
 
-    private APISearchManager searchManager = new APISearchManager(getContext());
+    private APISearchManager searchManager;
     private SearchView searchView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class Search extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        searchManager = new APISearchManager(getActivity());
         Log.d("Verification", "Creating search fragment");
         searchView = this.getView().findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
