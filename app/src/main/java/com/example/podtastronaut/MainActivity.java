@@ -2,9 +2,12 @@ package com.example.podtastronaut;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -12,8 +15,9 @@ import android.view.ViewTreeObserver;
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout overlay;
+    private FragmentContainerView overlayFragmentContainer;
     private ConstraintLayout menuView;
-    boolean overlayHidden = false;
+    boolean overlayHidden = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         // the sliding overlay that covers the main menu
         overlay = findViewById(R.id.overlay);
+        // the container for the fragments contained within this overlay
+        overlayFragmentContainer = findViewById(R.id.overlayFragmentContainer);
         // the main menu
         menuView = findViewById(R.id.menuView);
         // initializes the view shown on the overlay to be the search view
-        setOverlayView(R.layout.search);
+        setOverlayView(new Search());
 
         // adds a listener to the view tree which resizes the overlay, once built
         View mainView = findViewById(R.id.mainFrame);
@@ -47,12 +53,17 @@ public class MainActivity extends AppCompatActivity {
         overlay.setMaxHeight(menuView.getHeight());
     }
 
-    private void setOverlayView(int viewXMLID) {
-        ViewGroup parent = (ViewGroup) overlay.getParent();
-        int index = parent.indexOfChild(overlay);
-        parent.removeView(overlay);
-        getLayoutInflater().inflate(viewXMLID, parent);
-        overlay = (ConstraintLayout) parent.getChildAt(index);
+    private void setOverlayView(Fragment fragment) {
+//        ViewGroup parent = (ViewGroup) overlay.getParent();
+//        int index = parent.indexOfChild(overlay);
+//        parent.removeView(overlay);
+//        getLayoutInflater().inflate(viewXMLID, parent);
+//        overlay = (ConstraintLayout) parent.getChildAt(index);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.overlay, fragment)
+                .commit();
+
+
         resizeOverlay();
         moveOverlay();
     }
@@ -61,14 +72,10 @@ public class MainActivity extends AppCompatActivity {
      * Moves the overlay to reveal or hide the main menu
      */
     public void moveOverlay() {
-        float translationVal = overlay.getHeight();
-        if (overlayHidden) {
-            translationVal = 0;
-        }
         ObjectAnimator animation = ObjectAnimator.ofFloat(
                 overlay,
                 "translationY",
-                translationVal
+                (overlayHidden)? 0 : overlay.getHeight()
         );
         animation.setDuration(100);
         animation.start();
@@ -79,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         moveOverlay();
     }
 
-    public void onSearchViewButtonClicked(View view) {setOverlayView(R.layout.search);}
-    public void onDownloadsViewButtonClicked(View view) {setOverlayView(R.layout.downloads);}
-    public void onMyPodcastsViewButtonClicked(View view) {setOverlayView(R.layout.my_podcasts);}
-    public void onSettingsViewButtonClicked(View view) {setOverlayView(R.layout.settings);}
+    public void onSearchViewButtonClicked(View view) {setOverlayView(new Search());}
+    public void onDownloadsViewButtonClicked(View view) {setOverlayView(new Downloads());}
+    public void onMyPodcastsViewButtonClicked(View view) {setOverlayView(new MyPodcasts());}
+    public void onSettingsViewButtonClicked(View view) {setOverlayView(new Settings());}
 
     @Override
     public void onBackPressed() {
