@@ -111,6 +111,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/overlay"
         style="@style/OverlayView">
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/overlayFragmentContainer">
+
+        </androidx.fragment.app.FragmentContainerView>
+    </androidx.constraintlayout.widget.ConstraintLayout
+        >
 
 </FrameLayout>
