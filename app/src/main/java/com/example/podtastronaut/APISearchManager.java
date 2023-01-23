@@ -1,6 +1,7 @@
 package com.example.podtastronaut;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.chromium.net.CronetEngine;
@@ -13,13 +14,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class APISearchManager {
-    private static final String ITUNES_API_URL = "https://itunes.apple.com/search?media=podcast&term=";
     private Context context;
     private String title;
     private String languageTerm;
@@ -54,8 +55,8 @@ public class APISearchManager {
 
     Executor executor = Executors.newSingleThreadExecutor();
 
-    public List<Podcast> search(String searchTerm) {
-        APIRequest request = (APIRequest) new APIRequest().execute(searchTerm);
+    public List<Podcast> searchPodcasts(String searchTerm) {
+        APIRequest request = (APIRequest) new PodcastSearchRequest().execute(searchTerm);
         Log.d("APISearchRequest", "Request process began");
         return results;
     }

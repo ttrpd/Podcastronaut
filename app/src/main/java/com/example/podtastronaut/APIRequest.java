@@ -11,8 +11,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class APIRequest extends AsyncTask<String, Integer, String> {
+abstract class APIRequest extends AsyncTask<String, Integer, String> {
     private static final String ITUNES_API_URL = "https://itunes.apple.com/search?media=podcast&term=";
+
+    protected abstract void updateUI();
 
     @Override
     protected String doInBackground(String... searchTerms) {
@@ -54,7 +56,7 @@ public class APIRequest extends AsyncTask<String, Integer, String> {
     protected void onPostExecute(String result) {
         // this is executed on the main thread after the process is over
         // update your UI here
-        Log.d("APIRequest", "onPostExecute: "+result);
+        updateUI();
     }
 }
 

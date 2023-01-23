@@ -30,7 +30,7 @@ public class Search extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                searchManager.search(s);// when the api request callback gets called, the response will be logged
+                searchManager.searchPodcasts(s);// when the api request callback gets called, the response will be logged
                 return false;
             }
 
